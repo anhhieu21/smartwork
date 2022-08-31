@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:smartwork/styles/colors.dart';
+import 'package:smartwork/styles/text.dart';
 
 final ThemeData theme = ThemeData(
-    appBarTheme: const AppBarTheme(
-        iconTheme: IconThemeData(color: colorBlack),
+    appBarTheme: AppBarTheme(
+        iconTheme: const IconThemeData(color: colorBlack),
         backgroundColor: colorBgPage,
         elevation: 0,
-        titleTextStyle: TextStyle(color: colorBlack)));
+        titleTextStyle: textStyleGoogle.copyWith(color: colorBlack)));

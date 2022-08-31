@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:smartwork/cubit/task_cubit.dart';
 
 import 'package:smartwork/page/home/home_page.dart';
 import 'package:smartwork/page/task/task_page.dart';
@@ -21,6 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int indexPage = 0;
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<TaskCubit>(context).getListTask();
     return PersistentTabView(
       context,
       controller: _controller,
