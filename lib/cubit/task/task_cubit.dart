@@ -16,4 +16,8 @@ class TaskCubit extends Cubit<TaskState> {
     _taskService.addTask(item);
     getListTask();
   }
+   void removeTask(int index) {
+    _taskService.removeTask(index);
+    getListTask();
+  }
 }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
-import 'package:smartwork/cubit/task_cubit.dart';
-import 'package:smartwork/models/task.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:smartwork/cubit/index.dart';
+import 'package:smartwork/page/task/add_task_page.dart';
+import 'package:smartwork/routes/routes_path.dart';
 import 'package:smartwork/styles/colors.dart';
 
 const _kMaxCrossAxisExtent = 350.0;
@@ -29,27 +31,32 @@ class TaskPage extends StatelessWidget {
               final item = state.list[index];
               return Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
-                    padding: const EdgeInsets.all(8.0),
-                    decoration: BoxDecoration(
-                        color: colorWhite,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: colorShadown,
-                            offset: Offset(5, 8),
-                            blurRadius: 8.0,
-                          )
-                        ]),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(item.title),
-                        Text(item.content),
-                        Text(item.createdAt),
-                        Text(item.tag),
-                      ],
-                    )),
+                child: InkWell(
+                  onTap: () {
+                    context.read<TaskCubit>().removeTask(index);
+                  },
+                  child: Container(
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                          color: colorWhite,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: colorShadown,
+                              offset: Offset(5, 8),
+                              blurRadius: 8.0,
+                            )
+                          ]),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(item.title),
+                          Text(item.content),
+                          Text(item.createdAt),
+                          Text(item.tag),
+                        ],
+                      )),
+                ),
               );
             }),
           );
@@ -59,15 +66,22 @@ class TaskPage extends StatelessWidget {
           );
         }
       }),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        Task item = Task(
-            'Update project examplebloc',
-            'Update movie bloc',
-            DateFormat.yMMMEd()
-                .format(DateTime.parse(DateTime.now().toString())),
-            'doing');
-        BlocProvider.of<TaskCubit>(context).addTask(item);
-      }),
+      floatingActionButton: FloatingActionButton.small(
+        backgroundColor: colorGrey.withOpacity(0.5),
+        elevation: 0,
+        onPressed: () {
+          pushNewScreenWithRouteSettings(
+            context,
+            screen: const AddTaskPage(),
+            withNavBar: true,
+            settings: const RouteSettings(name: RoutePath.addTask),
+          );
+        },
+        child: const Icon(
+          Ionicons.pencil_outline,
+          color: colorBlack,
+        ),
+      ),
     );
   }
 }

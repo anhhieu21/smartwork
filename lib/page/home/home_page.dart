@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:smartwork/cubit/task_cubit.dart';
 import 'package:smartwork/page/home/widgets/category_task.dart';
-import 'package:smartwork/page/home/widgets/item_task.dart';
+import 'package:smartwork/page/home/widgets/label_category.dart';
 import 'package:smartwork/page/home/widgets/list_day.dart';
 import 'package:smartwork/page/home/widgets/list_task.dart';
 
@@ -78,23 +76,7 @@ class HomePage extends StatelessWidget {
               ),
               const ListDay(),
               const ListTask(),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Category Task',
-                      style: textStyleGoogle.copyWith(fontSize: 16),
-                    ),
-                    Text(
-                      'See all',
-                      style: textStyleGoogle.copyWith(
-                          fontSize: 14, color: colorGrey),
-                    ),
-                  ],
-                ),
-              ),
+              const LabelCategory(),
               const CategoryTask()
             ],
           ),

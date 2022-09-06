@@ -15,10 +15,8 @@ class Task {
 
   @HiveField(3)
   String tag;
-  Task(
-     this.title,
-     this.content,
-     this.createdAt,
-     this.tag,
- );
+
+  @HiveField(4)
+  String? category;
+  Task(this.title, this.content, this.createdAt, this.tag, this.category);
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:smartwork/cubit/category/category_cubit.dart';
+import 'package:smartwork/models/category.dart';
 import 'package:smartwork/styles/colors.dart';
 import 'package:smartwork/styles/text.dart';
 
@@ -10,19 +13,41 @@ class CategoryTask extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return SizedBox(
-      height: size.width / 2,
-      child: ListView(
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        children: List.generate(4, (index) => const ItemCategory()),
-      ),
+    return BlocBuilder<CategoryCubit, CategoryState>(
+      builder: (context, state) {
+        if (state is CategoryData) {
+          return SizedBox(
+            height: size.width / 2,
+            child: ListView(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              children: List.generate(state.categorys.length, (index) {
+                return ItemCategory(
+                  item: state.categorys[index],
+                  index: index,
+                  length: state.categorys.length,
+                );
+              }),
+            ),
+          );
+        } else {
+          return const ItemCategory();
+        }
+      },
     );
   }
 }
 
 class ItemCategory extends StatelessWidget {
-  const ItemCategory({super.key});
+  final Category? item;
+
+  final int? index;
+  final int? length;
+  const ItemCategory({super.key, this.item, this.index, this.length});
+  _addCategory(BuildContext context) {
+    Category category = Category('Update cubit for smartwork', '12');
+    BlocProvider.of<CategoryCubit>(context).addCategory(category);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,38 +65,56 @@ class ItemCategory extends StatelessWidget {
               BoxShadow(
                   color: colorShadown, offset: Offset(4, 4), blurRadius: 10.0)
             ]),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Ionicons.laptop,
-                color: colorWork,
-                size: 40,
-              ),
-              Row(
+        child: index == length
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
-                    child: Text(
-                      'Work for home',
-                      style: textStyleGoogle.copyWith(fontSize: 18),
-                    ),
+                  Text(
+                    'Add',
+                    textAlign: TextAlign.center,
+                    style: textStyleGoogle.copyWith(fontSize: 18),
                   ),
-                  Icon(
-                    Ionicons.chevron_forward,
-                    color: colorGrey.shade600,
-                  ),
+                  IconButton(
+                      onPressed: () => _addCategory(context),
+                      alignment: Alignment.center,
+                      icon: const Icon(
+                        Ionicons.add_circle,
+                        size: 30,
+                      )),
                 ],
+              )
+            : Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Ionicons.laptop,
+                      color: colorWork,
+                      size: 40,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            item?.title ?? '',
+                            style: textStyleGoogle.copyWith(fontSize: 18),
+                          ),
+                        ),
+                        Icon(
+                          Ionicons.chevron_forward,
+                          color: colorGrey.shade600,
+                        ),
+                      ],
+                    ),
+                    Text(
+                      '${item?.qty} Task',
+                      style: textStyleGoogle.copyWith(color: colorGrey),
+                    ),
+                  ],
+                ),
               ),
-              Text(
-                '12 Task',
-                style: textStyleGoogle.copyWith(color: colorGrey),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }

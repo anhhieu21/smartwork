@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smartwork/cubit/task_cubit.dart';
-
+import 'package:smartwork/cubit/index.dart';
 import 'item_task.dart';
-
 class ListTask extends StatelessWidget {
   const ListTask({super.key});
 

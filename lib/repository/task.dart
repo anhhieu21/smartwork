@@ -10,4 +10,8 @@ class TaskService {
   void addTask(Task task) {
     tasks.add(task);
   }
+
+  void removeTask(int index) {
+    tasks.deleteAt(index);
+  }
 }

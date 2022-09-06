@@ -3,32 +3,40 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:smartwork/cubit/task_cubit.dart';
-
+import 'package:smartwork/cubit/category/category_cubit.dart';
+import 'package:smartwork/cubit/task/task_cubit.dart';
 import 'package:smartwork/page/home/home_page.dart';
 import 'package:smartwork/page/task/task_page.dart';
 import 'package:smartwork/styles/colors.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MainPageState extends State<MainPage> {
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
 
   int indexPage = 0;
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     BlocProvider.of<TaskCubit>(context).getListTask();
+    BlocProvider.of<CategoryCubit>(context).getCategory();
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return PersistentTabView(
       context,
       controller: _controller,
       screens: _buildScreens(),
       items: _navBarsItems(),
+      
       confineInSafeArea: true,
       backgroundColor: Colors.white, // Default is Colors.white.
       handleAndroidBackButtonPress: true, // Default is true.
