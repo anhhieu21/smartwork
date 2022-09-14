@@ -19,7 +19,7 @@ class TaskAdapter extends TypeAdapter<Task> {
     return Task(
       fields[0] as String,
       fields[1] as String,
-      fields[2] as String,
+      fields[2] as DateTime,
       fields[3] as String,
       fields[4] as String?,
     );

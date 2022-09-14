@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smartwork/page/main_page.dart';
-import 'package:smartwork/page/task/add_task_page.dart';
+import 'package:smartwork/view/main_page.dart';
+import 'package:smartwork/view/task/add_task_page.dart';
 import 'package:smartwork/routes/routes_path.dart';
 
 final Map<String, Widget Function(dynamic)> routesMapping = {

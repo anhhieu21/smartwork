@@ -18,4 +18,9 @@ class CategoryCubit extends Cubit<CategoryState> {
     _categoryService.addCategory(category);
     getCategory();
   }
+
+  void removeCategory(int index) async {
+    _categoryService.removeCategory(index);
+    getCategory();
+  }
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:smartwork/page/home/widgets/category_task.dart';
-import 'package:smartwork/page/home/widgets/label_category.dart';
-import 'package:smartwork/page/home/widgets/list_day.dart';
-import 'package:smartwork/page/home/widgets/list_task.dart';
+import 'package:smartwork/view/home/widgets/category_task.dart';
+import 'package:smartwork/view/home/widgets/label_category.dart';
+import 'package:smartwork/view/home/widgets/list_day.dart';
+import 'package:smartwork/view/home/widgets/list_task.dart';
 
 import 'package:smartwork/styles/colors.dart';
 import 'package:smartwork/styles/text.dart';
@@ -57,12 +57,16 @@ class HomePage extends StatelessWidget {
               Text(
                 'Create and',
                 style: textStyleGoogle.copyWith(
-                    fontWeight: FontWeight.w800, fontSize: 35),
+                    fontWeight: FontWeight.w800,
+                    color: colorTitle,
+                    fontSize: 35),
               ),
               Text(
                 'Check Daily Task',
                 style: textStyleGoogle.copyWith(
-                    fontWeight: FontWeight.w800, fontSize: 35),
+                    fontWeight: FontWeight.w800,
+                    color: colorTitle,
+                    fontSize: 35),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -76,7 +80,7 @@ class HomePage extends StatelessWidget {
               ),
               const ListDay(),
               const ListTask(),
-              const LabelCategory(),
+              LabelCategory(),
               const CategoryTask()
             ],
           ),

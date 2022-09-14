@@ -66,8 +66,8 @@ class ItemTask extends StatelessWidget {
                       const SizedBox(
                         width: 5,
                       ),
-                      Text(item?.createdAt ?? '',
-                          style: textStyleGoogle.copyWith(color: colorGrey)),
+                      // Text(item?.createdAt ?? '',
+                      //     style: textStyleGoogle.copyWith(color: colorGrey)),
                     ],
                   ),
                   Container(

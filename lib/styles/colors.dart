@@ -8,5 +8,7 @@ const colorBlack = Colors.black;
 const colorGrey = Colors.grey;
 const colorDoing = Colors.blue;
 const colorDone = Color.fromARGB(255, 120, 245, 124);
+const colorConfirm = Color.fromARGB(255, 45, 151, 250);
 const colorWork = Color.fromARGB(255, 255, 114, 7);
 const colorShadown = Color.fromARGB(255, 240, 238, 238);
+const colorTitle = Color.fromARGB(255, 9, 3, 121);

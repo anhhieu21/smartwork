@@ -11,7 +11,7 @@ class Task {
   String content;
 
   @HiveField(2)
-  String createdAt;
+  DateTime createdAt;
 
   @HiveField(3)
   String tag;

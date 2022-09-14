@@ -5,8 +5,9 @@ import 'package:ionicons/ionicons.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:smartwork/cubit/category/category_cubit.dart';
 import 'package:smartwork/cubit/task/task_cubit.dart';
-import 'package:smartwork/page/home/home_page.dart';
-import 'package:smartwork/page/task/task_page.dart';
+import 'package:smartwork/view/categories/categories_page.dart';
+import 'package:smartwork/view/home/home_page.dart';
+import 'package:smartwork/view/task/task_page.dart';
 import 'package:smartwork/styles/colors.dart';
 
 class MainPage extends StatefulWidget {
@@ -36,7 +37,7 @@ class _MainPageState extends State<MainPage> {
       controller: _controller,
       screens: _buildScreens(),
       items: _navBarsItems(),
-      
+
       confineInSafeArea: true,
       backgroundColor: Colors.white, // Default is Colors.white.
       handleAndroidBackButtonPress: true, // Default is true.
@@ -70,7 +71,7 @@ class _MainPageState extends State<MainPage> {
 List<Widget> _buildScreens() {
   return [
     const HomePage(),
-    const TaskPage(),
+    const CategoriesPage(),
     const TaskPage(),
     const TaskPage()
   ];

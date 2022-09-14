@@ -12,24 +12,23 @@ class ListDay extends StatefulWidget {
 }
 
 class _ListDayState extends State<ListDay> {
-  DateTime now = DateTime.now();
-  late DateTime lastDayOfMonth;
+  final now = DateTime.now();
 
   @override
   void initState() {
-    lastDayOfMonth = DateTime(now.month, now.day + 1, 0);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    final firstDayOfWeek = now.subtract(Duration(days: now.weekday - 1));
     return SizedBox(
       height: 100,
       child: ListView(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        children: List.generate(6, (index) {
-          final currentDate = lastDayOfMonth.add(Duration(days: index));
+        children: List.generate(7, (index) {
+          final currentDate = firstDayOfWeek.add(Duration(days: index));
           return ItemDay(
             index: index,
             currentDate: currentDate,

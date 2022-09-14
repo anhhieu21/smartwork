@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:smartwork/contants/tag.dart';
 import 'package:smartwork/cubit/index.dart';
 import 'package:smartwork/models/task.dart';
-import 'package:smartwork/page/task/widgets/list_category.dart';
+import 'package:smartwork/view/task/widgets/list_category.dart';
 import 'package:smartwork/styles/colors.dart';
 import 'package:smartwork/styles/text.dart';
 
@@ -21,15 +20,10 @@ class _AddTaskPageState extends State<AddTaskPage> {
   final contentController = TextEditingController();
   int selectTag = 0;
   late String tag;
-  String string = "Not set yet";
-  set _string(String value) => setState(() => string = value);
+  late String category;
   _addTask() {
-    Task item = Task(
-        titleController.text,
-        contentController.text,
-        DateFormat.yMMMEd().format(DateTime.parse(DateTime.now().toString())),
-        tag,
-        '');
+    Task item = Task(titleController.text, contentController.text,
+        DateTime.now(), tag, category);
     BlocProvider.of<TaskCubit>(context).addTask(item);
     Navigator.pop(context);
   }
@@ -84,8 +78,8 @@ class _AddTaskPageState extends State<AddTaskPage> {
                 ],
               ),
               ListCategory(
-                  callback: (category) => setState(() {
-                        string = category;
+                  callback: (value) => setState(() {
+                        category = value;
                       })),
               TextField(
                 controller: titleController,

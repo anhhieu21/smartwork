@@ -10,4 +10,7 @@ class CategoryService {
   void addCategory(Category category) {
     categorys.add(category);
   }
+  void removeCategory(int index){
+    categorys.deleteAt(index);
+  }
 }
