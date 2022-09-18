@@ -12,3 +12,6 @@ const colorConfirm = Color.fromARGB(255, 45, 151, 250);
 const colorWork = Color.fromARGB(255, 255, 114, 7);
 const colorShadown = Color.fromARGB(255, 240, 238, 238);
 const colorTitle = Color.fromARGB(255, 9, 3, 121);
+const colorSun = Color.fromARGB(255, 250, 169, 28);
+const colorNight = Color.fromARGB(255, 126, 61, 128);
+const colorRed = Color.fromARGB(255, 238, 85, 74);

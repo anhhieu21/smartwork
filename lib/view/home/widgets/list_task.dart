@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smartwork/cubit/index.dart';
+import 'package:smartwork/view/home/cubit/task/task_day_cubit.dart';
 import 'item_task.dart';
+
 class ListTask extends StatelessWidget {
   const ListTask({super.key});
 
@@ -11,10 +12,10 @@ class ListTask extends StatelessWidget {
 
     return SizedBox(
       height: size.width / 2.2,
-      child: BlocBuilder<TaskCubit, TaskState>(
+      child: BlocBuilder<TaskDayCubit, TaskDayState>(
         builder: (context, state) {
-          if (state is TaskData) {
-            final list = state.list;
+          if (state is TaskDayList) {
+            final list = state.taskList;
             return ListView(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,

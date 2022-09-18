@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:smartwork/contants/tag.dart';
+import 'package:smartwork/cubit/category/category_cubit.dart';
 import 'package:smartwork/cubit/index.dart';
 import 'package:smartwork/models/task.dart';
 import 'package:smartwork/view/task/widgets/list_category.dart';
@@ -19,12 +20,13 @@ class _AddTaskPageState extends State<AddTaskPage> {
   final titleController = TextEditingController();
   final contentController = TextEditingController();
   int selectTag = 0;
-  late String tag;
+  String? tag;
   late String category;
   _addTask() {
     Task item = Task(titleController.text, contentController.text,
-        DateTime.now(), tag, category);
+        DateTime.now(), tag ?? 'doing', category);
     BlocProvider.of<TaskCubit>(context).addTask(item);
+    BlocProvider.of<CategoryCubit>(context).updateCategory(category);
     Navigator.pop(context);
   }
 
@@ -64,6 +66,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                                       style: textStyleGoogle.copyWith(
                                           color: colorWhite)),
                                   selectedColor: colorDone,
+                                  backgroundColor: colorGrey,
                                   selected: (selectTag == index),
                                   onSelected: (bool value) {
                                     setState(() {

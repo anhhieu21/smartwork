@@ -5,6 +5,7 @@ import 'package:smartwork/models/category.dart';
 import 'package:smartwork/styles/colors.dart';
 import 'package:smartwork/styles/text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class ItemCategories extends StatelessWidget {
   final Category item;
@@ -13,21 +14,33 @@ class ItemCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    // final size = MediaQuery.of(context).size;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Dismissible(
-        key: Key(item.title),
-        onDismissed: (direction) {
-          context.read<CategoryCubit>().removeCategory(index);
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text('$item dismissed')));
-        },
-        background: Container(color: Colors.red),
+      child: Slidable(
+        endActionPane: ActionPane(
+          motion: const DrawerMotion(),
+          children: [
+            SlidableAction(
+              onPressed: _renameCategory(),
+              icon: Ionicons.pencil,
+              backgroundColor: colorDone,
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(20.0),
+                  bottomLeft: Radius.circular(20.0)),
+            ),
+            SlidableAction(
+              onPressed: _removeCategory,
+              icon: Ionicons.trash,
+              backgroundColor: colorRed,
+              borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(20.0),
+                  bottomRight: Radius.circular(20.0)),
+            )
+          ],
+        ),
         child: Container(
-          width: size.width / 2,
-          margin: const EdgeInsets.only(right: 20),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
               color: colorWhite,
@@ -74,5 +87,11 @@ class ItemCategories extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _renameCategory() {}
+
+  void _removeCategory(BuildContext context) {
+    BlocProvider.of<CategoryCubit>(context).removeCategory(index);
   }
 }

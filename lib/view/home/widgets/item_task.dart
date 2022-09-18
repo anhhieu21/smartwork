@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:smartwork/index.dart';
 
 import 'package:smartwork/models/task.dart';
 import 'package:smartwork/styles/colors.dart';
@@ -55,7 +56,10 @@ class ItemTask extends StatelessWidget {
                     ],
                   ),
                   Text(item?.content ?? '',
+                      maxLines: 2,
+                      overflow: TextOverflow.clip,
                       style: textStyleGoogle.copyWith(color: colorGrey)),
+                  const Spacer(),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -66,22 +70,24 @@ class ItemTask extends StatelessWidget {
                       const SizedBox(
                         width: 5,
                       ),
-                      // Text(item?.createdAt ?? '',
-                      //     style: textStyleGoogle.copyWith(color: colorGrey)),
+                      Expanded(
+                        child: Text(Formatter.dateTime(item!.createdAt),
+                            style: textStyleGoogle.copyWith(color: colorGrey)),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(top: 5),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.0),
+                          color: item!.tag == 'doing' ? colorDoing : colorDone,
+                        ),
+                        child: Text(item?.tag ?? '',
+                            style: textStyleGoogle.copyWith(
+                                color: colorWhite, fontSize: 12)),
+                      )
                     ],
                   ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 5),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      color: item!.tag == 'doing' ? colorDoing : colorDone,
-                    ),
-                    child: Text(item?.tag ?? '',
-                        style: textStyleGoogle.copyWith(
-                            color: colorWhite, fontSize: 12)),
-                  )
                 ],
               ),
             ),

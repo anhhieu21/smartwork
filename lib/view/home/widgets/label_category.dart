@@ -8,7 +8,8 @@ import 'package:smartwork/styles/text.dart';
 import 'package:smartwork/view/widgets/custom_textfield.dart';
 
 class LabelCategory extends StatelessWidget {
-  LabelCategory({super.key});
+  final bool isSeeAll;
+  LabelCategory({super.key, required this.isSeeAll});
   final TextEditingController titleController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -50,14 +51,15 @@ class LabelCategory extends StatelessWidget {
               ),
             ],
           ),
-          InkWell(
-            onTap: () {},
-            child: Text(
-              'See all',
-              textAlign: TextAlign.end,
-              style: textStyleGoogle.copyWith(fontSize: 14, color: colorGrey),
+          if (isSeeAll)
+            InkWell(
+              onTap: () {},
+              child: Text(
+                'See all',
+                textAlign: TextAlign.end,
+                style: textStyleGoogle.copyWith(fontSize: 14, color: colorGrey),
+              ),
             ),
-          ),
         ],
       ),
     );

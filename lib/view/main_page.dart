@@ -5,10 +5,9 @@ import 'package:ionicons/ionicons.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:smartwork/cubit/category/category_cubit.dart';
 import 'package:smartwork/cubit/task/task_cubit.dart';
-import 'package:smartwork/view/categories/categories_page.dart';
-import 'package:smartwork/view/home/home_page.dart';
-import 'package:smartwork/view/task/task_page.dart';
+
 import 'package:smartwork/styles/colors.dart';
+import 'view.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -21,7 +20,6 @@ class _MainPageState extends State<MainPage> {
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
 
-  int indexPage = 0;
   @override
   void initState() {
     BlocProvider.of<TaskCubit>(context).getListTask();
@@ -73,7 +71,7 @@ List<Widget> _buildScreens() {
     const HomePage(),
     const CategoriesPage(),
     const TaskPage(),
-    const TaskPage()
+    const SettingPage()
   ];
 }
 

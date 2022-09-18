@@ -3,6 +3,7 @@ import 'package:smartwork/models/task.dart';
 
 class TaskService {
   Box<Task> tasks = Hive.box<Task>('task');
+
   List<Task> getListTask() {
     return tasks.values.toList();
   }
@@ -14,4 +15,5 @@ class TaskService {
   void removeTask(int index) {
     tasks.deleteAt(index);
   }
+   
 }

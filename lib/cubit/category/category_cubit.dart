@@ -19,6 +19,11 @@ class CategoryCubit extends Cubit<CategoryState> {
     getCategory();
   }
 
+  void updateCategory(String category) {
+    _categoryService.updateCategory(category);
+    getCategory();
+  }
+
   void removeCategory(int index) async {
     _categoryService.removeCategory(index);
     getCategory();
