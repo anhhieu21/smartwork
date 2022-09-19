@@ -70,7 +70,7 @@ List<Widget> _buildScreens() {
   return [
     const HomePage(),
     const CategoriesPage(),
-    const TaskPage(),
+     TaskPage(),
     const SettingPage()
   ];
 }

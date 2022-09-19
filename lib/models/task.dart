@@ -1,6 +1,7 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
 part 'task.g.dart';
+enum Sort { latest, oldest }
 
 @HiveType(typeId: 1)
 class Task {
