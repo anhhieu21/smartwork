@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:smartwork/cubit/app/app_cubit.dart';
-import 'package:smartwork/cubit/category/category_cubit.dart';
-import 'package:smartwork/repository/category.dart';
-import 'package:smartwork/repository/task.dart';
-import 'package:smartwork/routes/routes.dart';
-import 'package:smartwork/view/home/cubit/task/task_day_cubit.dart';
-import 'package:smartwork/view/home/cubit/title_cubit.dart';
-import 'cubit/task/task_cubit.dart';
+
+import 'package:smartwork/domain/repository/category.dart';
+import 'package:smartwork/domain/repository/task.dart';
+import 'cubit.dart';
+import 'presentation/routes/routes.dart';
+import 'view.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
