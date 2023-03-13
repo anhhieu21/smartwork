@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import 'package:smartwork/cubit.dart';
 import 'package:smartwork/models.dart';
@@ -58,7 +58,7 @@ class ItemCategory extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: GestureDetector(
         onTap: () {
-          pushNewScreenWithRouteSettings(
+       PersistentNavBarNavigator.   pushNewScreenWithRouteSettings(
             context,
             screen: TaskByCategory(
               category: item!.title,

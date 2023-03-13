@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
 import 'package:ionicons/ionicons.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import 'package:smartwork/presentation/routes/routes_path.dart';
 import 'package:smartwork/presentation/styles/colors.dart';
 import 'package:smartwork/presentation/styles/text.dart';
 import 'package:smartwork/view.dart';
 
-const urlAvatar =
-    'https://images.unsplash.com/flagged/photo-1559502867-c406bd78ff24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=385&q=80';
-
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    const styleTitle =
+        TextStyle(fontWeight: FontWeight.w800, color: colorTitle, fontSize: 35);
     return Scaffold(
       appBar: AppBar(
         title: const TitleAppBar(),
@@ -31,20 +31,8 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Create and',
-                style: textStyleGoogle.copyWith(
-                    fontWeight: FontWeight.w800,
-                    color: colorTitle,
-                    fontSize: 35),
-              ),
-              Text(
-                'Check Daily Task',
-                style: textStyleGoogle.copyWith(
-                    fontWeight: FontWeight.w800,
-                    color: colorTitle,
-                    fontSize: 35),
-              ),
+              const Text('Create and', style: styleTitle),
+              const Text('Check Daily Task', style: styleTitle),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -53,7 +41,7 @@ class HomePage extends StatelessWidget {
                     style: textStyleGoogle.copyWith(fontSize: 16),
                   ),
                   IconButton(
-                      onPressed: () => pushNewScreenWithRouteSettings(
+                      onPressed: () =>PersistentNavBarNavigator. pushNewScreenWithRouteSettings(
                             context,
                             screen: const AddTaskPage(),
                             withNavBar: false,

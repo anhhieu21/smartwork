@@ -17,9 +17,7 @@ class ListTask extends StatelessWidget {
         builder: (context, state) {
           if (state is TaskDayList) {
             final list = state.taskList;
-            return ListView(
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
+            return Row(
               children: List.generate(
                   list.length,
                   (index) => ItemTask(

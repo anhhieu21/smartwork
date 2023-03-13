@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import 'package:smartwork/cubit.dart';
 import 'package:smartwork/domain/repository/task.dart';
@@ -84,7 +84,7 @@ class TaskByCategory extends StatelessWidget {
             backgroundColor: colorGrey.withOpacity(0.5),
             elevation: 0,
             onPressed: () {
-              pushNewScreenWithRouteSettings(
+             PersistentNavBarNavigator. pushNewScreenWithRouteSettings(
                 context,
                 screen: const AddTaskPage(),
                 withNavBar: true,
