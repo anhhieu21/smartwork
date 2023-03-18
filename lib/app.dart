@@ -25,24 +25,18 @@ class MyApp extends StatelessWidget {
       ],
       child: MultiBlocProvider(
         providers: [
+          BlocProvider(create: (context) => AppCubit()..darkMode(false)),
           BlocProvider(
-            create: (context) => AppCubit()..darkMode(false),
-          ),
+              create: (context) =>
+                  TaskCubit(RepositoryProvider.of<TaskService>(context))),
           BlocProvider(
-            create: (context) =>
-                TaskCubit(RepositoryProvider.of<TaskService>(context)),
-          ),
+              create: (context) => CategoryCubit(
+                  RepositoryProvider.of<CategoryService>(context))),
+          BlocProvider(create: (context) => TitleCubit()..titleDateTime()),
           BlocProvider(
-            create: (context) =>
-                CategoryCubit(RepositoryProvider.of<CategoryService>(context)),
-          ),
-          BlocProvider(
-            create: (context) => TitleCubit()..titleDateTime(),
-          ),
-          BlocProvider(
-              create: (context) => TaskDayCubit(
-                    RepositoryProvider.of<TaskService>(context),
-                  )..listTaskDay(DateTime.now()))
+              create: (context) =>
+                  TaskDayCubit(RepositoryProvider.of<TaskService>(context))
+                    ..listTaskDay(DateTime.now()))
         ],
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,

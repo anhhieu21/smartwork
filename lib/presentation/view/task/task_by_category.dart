@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import 'package:smartwork/cubit.dart';
 import 'package:smartwork/domain/repository/task.dart';
@@ -83,14 +82,7 @@ class TaskByCategory extends StatelessWidget {
           floatingActionButton: FloatingActionButton.small(
             backgroundColor: colorGrey.withOpacity(0.5),
             elevation: 0,
-            onPressed: () {
-             PersistentNavBarNavigator. pushNewScreenWithRouteSettings(
-                context,
-                screen: const AddTaskPage(),
-                withNavBar: true,
-                settings: const RouteSettings(name: RoutePath.addTask),
-              );
-            },
+            onPressed: () => Navigator.of(context).pushNamed(RoutePath.addTask),
             child: const Icon(
               Ionicons.pencil_outline,
               color: colorBlack,

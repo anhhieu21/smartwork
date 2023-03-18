@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:ionicons/ionicons.dart';
 
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-
 import 'package:smartwork/presentation/routes/routes_path.dart';
 import 'package:smartwork/presentation/styles/colors.dart';
 import 'package:smartwork/presentation/styles/text.dart';
@@ -41,13 +39,8 @@ class HomePage extends StatelessWidget {
                     style: textStyleGoogle.copyWith(fontSize: 16),
                   ),
                   IconButton(
-                      onPressed: () =>PersistentNavBarNavigator. pushNewScreenWithRouteSettings(
-                            context,
-                            screen: const AddTaskPage(),
-                            withNavBar: false,
-                            settings:
-                                const RouteSettings(name: RoutePath.addTask),
-                          ),
+                      onPressed: () =>
+                          Navigator.of(context).pushNamed(RoutePath.addTask),
                       icon: const Icon(Ionicons.add))
                 ],
               ),

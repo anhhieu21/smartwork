@@ -47,7 +47,6 @@ dependencies:
   # icon ioni
   ionicons: ^0.2.1
   equatable: ^2.0.5
-  persistent_bottom_nav_bar: ^5.0.2
   google_fonts: ^3.0.1
   intl: ^0.17.0
   dropdown_search: ^5.0.2

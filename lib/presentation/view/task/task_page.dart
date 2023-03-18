@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import 'package:smartwork/cubit.dart';
 import 'package:smartwork/models.dart';
@@ -126,14 +125,7 @@ class _TaskPageState extends State<TaskPage> {
     );
   }
 
-  _addTask() {
-     PersistentNavBarNavigator.pushNewScreenWithRouteSettings(
-      context,
-      screen: const AddTaskPage(),
-      withNavBar: true,
-      settings: const RouteSettings(name: RoutePath.addTask),
-    );
-  }
+  _addTask() => Navigator.of(context).pushNamed(RoutePath.addTask);
 
   _sortList(Sort sort) {
     context.read<TaskCubit>().getListTask(sort: sort);

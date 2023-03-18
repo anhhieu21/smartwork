@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:ionicons/ionicons.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import 'package:smartwork/models.dart';
 import 'package:smartwork/presentation/routes/routes_path.dart';
 import 'package:smartwork/presentation/styles/colors.dart';
 import 'package:smartwork/presentation/styles/text.dart';
 import 'package:smartwork/presentation/utils/formatter.dart';
-import 'package:smartwork/presentation/view/home/home_page.dart';
 import 'package:smartwork/presentation/view/widgets/on_tap_effect.dart';
 
 class ItemTask extends StatelessWidget {
@@ -18,9 +16,7 @@ class ItemTask extends StatelessWidget {
     this.item,
   }) : super(key: key);
   _onTap(BuildContext context, Task task) {
-    PersistentNavBarNavigator.pushNewScreenWithRouteSettings(context,
-        screen: HomePage(),
-        settings: const RouteSettings(name: RoutePath.home));
+    Navigator.of(context).pushNamed(RoutePath.taskDetail, arguments: task);
   }
 
   @override
@@ -45,7 +41,7 @@ class ItemTask extends StatelessWidget {
                 ]),
             child: OntapEffect(
               radius: 20,
-              callback: () {},
+              callback: () => _onTap(context, item!),
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 15.0, vertical: 10.0),

@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import 'package:smartwork/cubit.dart';
 import 'package:smartwork/models.dart';
 import 'package:smartwork/presentation/routes/routes_path.dart';
 import 'package:smartwork/presentation/styles/colors.dart';
 import 'package:smartwork/presentation/styles/text.dart';
-import 'package:smartwork/view.dart';
 
 class CategoryTask extends StatelessWidget {
   const CategoryTask({super.key});
@@ -58,14 +56,8 @@ class ItemCategory extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: GestureDetector(
         onTap: () {
-       PersistentNavBarNavigator.   pushNewScreenWithRouteSettings(
-            context,
-            screen: TaskByCategory(
-              category: item!.title,
-            ),
-            withNavBar: false,
-            settings: const RouteSettings(name: RoutePath.taskByCategory),
-          );
+          Navigator.of(context)
+              .pushNamed(RoutePath.taskByCategory, arguments: item!.title);
         },
         child: Container(
           width: size.width / 2,
